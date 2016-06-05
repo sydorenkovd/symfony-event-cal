@@ -1,9 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-here we are
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Welcome</h3>
+        </div>
+        <div class="panel-body">
+            <p>Event Calendar</p>
+            <a class="btn btn-success" href="/category/create">Create Category</a>
+            <a class="btn btn-primary" href="/event/create">Create Event</a>
+        </div>
+        <div class="panel-footer">Panel footer</div>
+    </div>
 {% endblock %}
 
-{% block stylesheets %}
-
-{% endblock %}

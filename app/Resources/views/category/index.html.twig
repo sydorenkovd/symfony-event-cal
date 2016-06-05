@@ -1,1 +1,19 @@
-index
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Category</div>
+
+  <!-- Table -->
+  <table class="table">
+      <tbody>
+<tr>
+    <td>Category 1</td>
+    <td><a class="btn btn-default" href="/category/edit">Edit</a>
+    <a class="btn btn-danger" href="/category/delete">Delete</a> </td>
+</tr>
+      </tbody>
+  </table>
+</div>
+{% endblock %}

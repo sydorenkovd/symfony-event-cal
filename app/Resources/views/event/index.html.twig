@@ -1,1 +1,26 @@
-event/index
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Event</div>
+
+        <!-- Table -->
+        <table class="table table-striped">
+            <thead>
+            <th>Event Name</th>
+            <th>Category</th>
+            <th>Day</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Event 1</td>
+                <td>Category</td>
+                <td>Day</td>
+                <td><a class="btn btn-default" href="/event/edit">Edit</a>
+                    <a class="btn btn-danger" href="/event/delete">Delete</a> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
