@@ -64,11 +64,43 @@ $categories = $this->getDoctrine()
     /**
      * @Route("/category/edit/{id}", name="category_edit")
      */
-    public function editAction(Request $request)
+    public function editAction($id, Request $request)
     {
 
+        $category = $this->getDoctrine()
+            ->getRepository('AppBundle:Category')
+            ->find($id);
+        if (!$category){
+            throw $this->createNotFoundException(
+                'No category found for id' . $id
+            );
+        }
+        $category->setName($category->getName());
+        $form = $this->createFormBuilder($category)
+            ->add('name', TextType::class,
+                ['attr' => ['class' => 'form-control', 'style' => 'margin-bottom:15px']])
+            ->add('save', SubmitType::class,
+                ['label' => 'Update Category', 'attr' => ['class' => 'btn btn-primary']])
+            ->getForm();
+        //handle request
+        $form->handleRequest($request);
+        //check submit
+        if($form->isSubmitted() && $form->isValid()){
+            $name = $form['name']->getData();
+            //Get current date time
+
+            $em = $this->getDoctrine()->getManager();
+            $category = $em->getRepository('AppBundle:Category')->find($id);
+            $category->setName($name);
+            $em->flush();
+            $this->addFlash(
+                'notice',
+                'Category Updated'
+            );
+            return $this->redirect('/category');
+        }
         return $this->render('category/edit.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
+            'form' => $form->createView()
         ]);
     }
     /**

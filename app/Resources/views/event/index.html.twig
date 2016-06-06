@@ -18,6 +18,7 @@
             {% for event in events %}
             <tr>
                 <td>{{ event.name }}</td>
+                <td>{{ event.city }}</td>
                 <td>{{ event.category.name }}</td>
                 <td>{{ event.day|date('F j, Y, g:i a') }}</td>
                 <td><a class="btn btn-default" href="/event/edit/{{ event.id }}">Edit</a>
