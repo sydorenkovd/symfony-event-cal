@@ -106,8 +106,19 @@ $categories = $this->getDoctrine()
     /**
      * @Route("/category/delete/{id}", name="category_delete")
      */
-    public function deleteAction(Request $request)
+    public function deleteAction($id)
     {
-
+$em = $this->getDoctrine()->getManager();
+        $category = $em->getRepository('AppBundle:Category')->find($id);
+        if(!$category){
+            throw $this->createNotFoundException('No category for delete with id ' . $id);
+        }
+        $em->remove($category);
+        $em->flush();
+        $this->addFlash(
+            'notice',
+            'Category Deleted'
+        );
+        return $this->redirect('/category');
     }
 }

@@ -4,7 +4,9 @@
     <div class="panel panel-default">
   <!-- Default panel contents -->
   <div class="panel-heading">Category</div>
-
+{% for flashMessage in app.session.flashbag.get('notice')%}
+    <div class="alert alert-success">{{ flashMessage }}</div>
+    {% endfor %}
   <!-- Table -->
   <table class="table">
       <tbody>
