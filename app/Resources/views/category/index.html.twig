@@ -8,11 +8,13 @@
   <!-- Table -->
   <table class="table">
       <tbody>
+      {% for category in categories %}
 <tr>
-    <td>Category 1</td>
-    <td><a class="btn btn-default" href="/category/edit">Edit</a>
-    <a class="btn btn-danger" href="/category/delete">Delete</a> </td>
+    <td>{{ category.name }}</td>
+    <td><a class="btn btn-default" href="/category/edit/{{ category.id }}">Edit</a>
+    <a class="btn btn-danger" href="/category/delete/{{ category.id }}">Delete</a> </td>
 </tr>
+          {% endfor %}
       </tbody>
   </table>
 </div>
