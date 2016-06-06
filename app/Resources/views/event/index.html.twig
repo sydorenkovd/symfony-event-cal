@@ -8,18 +8,22 @@
         <!-- Table -->
         <table class="table table-striped">
             <thead>
+            <tr>
             <th>Event Name</th>
             <th>Category</th>
             <th>Day</th>
+            </tr>
             </thead>
             <tbody>
+            {% for event in events %}
             <tr>
-                <td>Event 1</td>
-                <td>Category</td>
-                <td>Day</td>
-                <td><a class="btn btn-default" href="/event/edit">Edit</a>
-                    <a class="btn btn-danger" href="/event/delete">Delete</a> </td>
+                <td>{{ event.name }}</td>
+                <td>{{ event.category.name }}</td>
+                <td>{{ event.day|date('F j, Y, g:i a') }}</td>
+                <td><a class="btn btn-default" href="/event/edit/{{ event.id }}">Edit</a>
+                    <a class="btn btn-danger" href="/event/delete/{{ event.id }}">Delete</a> </td>
             </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
